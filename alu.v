@@ -38,15 +38,15 @@ always@(posedge clk, negedge reset) begin
     valid_out_R <= valid_in;
 
     //Valid_out logic
-    if(ctl == 4'b1001) begin       //[BUG]
-      valid_out <= ~valid_in;
-    end
-    else if(ctl == 4'b0110) begin  //[BUG]
-      valid_out <= valid_out_R;
-    end
-    else begin
+    // if(ctl == 4'b1001) begin       //[BUG]
+    //   valid_out <= ~valid_in;
+    // end
+    // else if(ctl == 4'b0110) begin  //[BUG]
+    //   valid_out <= valid_out_R;
+    // end
+    // else begin
       valid_out <= valid_in;
-    end
+    // end
 
     //Other outputs logic
     if(valid_in) begin

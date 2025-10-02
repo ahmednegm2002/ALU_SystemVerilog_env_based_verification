@@ -4,4 +4,5 @@ package env_pkg;
 `include "driver.sv"
 `include "monitor.sv"
 `include "scoreboard.sv"
+`include "subscriber.sv"
 endpackage

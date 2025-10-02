@@ -6,6 +6,7 @@ module top;
 
 logic clk, reset;
 testenv env;
+virtual alu_if vif;
 
 initial begin
     clk = 0;
@@ -22,10 +23,8 @@ initial begin
     alu_if_inst.pkt_num = 0;
     #15;
     reset = 1;
-
-
     env = new(vif);
-    env.run_env(1000); // generate 10 transactions
+    env.run_env(10); // generate 10 transactions
 
     $finish;
 end
@@ -46,7 +45,6 @@ alu DUT (
     .valid_out(alu_if_inst.valid_out)   
 );
 
-virtual alu_if vif;
 initial begin
     vif = alu_if_inst;
 end

@@ -11,12 +11,12 @@ class transaction;
     static int error_count = 0;
 
 
-
     constraint c_valid_in {valid_in == 1'b1;} // always valid input
+    constraint c_ctl { ctl inside {[0:13]}; } // ctl in 0-8 and 10-13, exclude 9
 
-    constraint c_ctl { ctl inside {[0:8], [10:13]}; } // ctl in 0-8 and 10-13, exclude 9
-
-
+    function new();
+        a = 0; b = 0; cin = 0; ctl = 0; alu = 0; carry = 0; zero = 0; valid_in = 0; valid_out = 0; pkt_num = 0;
+    endfunction
     function void tr_display();
         $display("---------------------------------------------------");
         $display("pkt_num=%0d", pkt_num);
@@ -25,3 +25,5 @@ class transaction;
         $display("---------------------------------------------------");       
     endfunction
 endclass
+
+

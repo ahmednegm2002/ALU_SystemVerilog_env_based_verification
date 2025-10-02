@@ -65,9 +65,6 @@ task automatic alu_ref_model (
 
 endtask
 
-
-
-
     task run_scoreboard();
 
            logic [3:0] alu_ref;
@@ -92,8 +89,7 @@ endtask
                 tr.correct_count++;
                 $display("Match confirmed in Scoreboard for pkt_num=%0d", tr.pkt_num);
                 tr.tr_display();
-              end
-            
+              end        
        end
     endtask
 endclass

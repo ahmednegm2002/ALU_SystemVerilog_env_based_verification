@@ -1,9 +1,10 @@
 
 class monitor; // get stimulus and response from DUT through virtual interface and print them
 virtual alu_if vif;
-mailbox #(transaction) mb_mon;
-    function new(virtual alu_if vif , mailbox #(transaction) mb);
-        this.mb_mon = mb;
+mailbox #(transaction) mb_mon_score , mb_mon_sub;
+    function new(virtual alu_if vif , mailbox #(transaction) mb_score , mailbox #(transaction) mb_sub);
+        this.mb_mon_score = mb_score;
+        this.mb_mon_sub = mb_sub;
         this.vif = vif;
     endfunction
     task run_monitor();
@@ -32,7 +33,8 @@ mailbox #(transaction) mb_mon;
                 tr.alu = vif.alu;
                 tr.carry = vif.carry;
                 tr.zero = vif.zero;
-                mb_mon.put(tr); // send for scoreboard
+                mb_mon_score.put(tr); // send for scoreboard
+                mb_mon_sub.put(tr); // send for subscriber
                 $display("---------------------------------------------------");
                 $display("Monitoring from DUT: a=%0d, b=%0d, cin=%0b, ctl=%0b, pkt_num=%0d", vif.a, vif.b, vif.cin, vif.ctl, vif.pkt_num);
                 $display("Monitoring from DUT: valid_out=%0b, alu=%0d, carry=%0b, zero=%0b", vif.valid_out, vif.alu, vif.carry, vif.zero);

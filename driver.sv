@@ -29,6 +29,7 @@ virtual alu_if vif;
               begin
                   repeat(2) begin
                    @(posedge vif.clk); // wait until DUT finish respond
+                   
                   end
               end
               join_any
